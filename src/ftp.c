@@ -50,18 +50,18 @@ static tile_region traversal(network_parameters* net_para, tile_region output, u
    int32_t h = net_para->input_maps[l].h;     
 
    if(net_para->type[l] == CONV_LAYER){
-      input.w1 = (output.w1*stride - filter/2)>0 ? (output.w1*stride - filter/2) : 0;
-      input.w2 = (output.w2*stride + filter/2)<(w-1) ? (output.w2*stride + filter/2) : (w-1);
-      input.h1 = (output.h1*stride - filter/2)>0   ? (output.h1*stride - filter/2) : 0;
-      input.h2 = (output.h2*stride + filter/2)<(h-1) ? (output.h2*stride + filter/2) : (h-1);
+      input.w1 = (output.w1 * stride - filter / 2) > 0 ? (output.w1 * stride - filter / 2) : 0;
+      input.w2 = (output.w2 * stride + filter / 2) < (w - 1) ? (output.w2 * stride + filter / 2) : (w - 1);
+      input.h1 = (output.h1 * stride - filter / 2) > 0 ? (output.h1 * stride - filter / 2) : 0;
+      input.h2 = (output.h2 * stride + filter / 2) < (h - 1) ? (output.h2 * stride + filter / 2) : (h - 1);
    }else if(net_para->type[l] == POOLING_LAYER){
-      input.w1 = output.w1*stride;
-      input.w2 = output.w2*stride + stride -1;
-      input.h1 = output.h1*stride;
-      input.h2 = output.h2*stride + stride -1;
+      input.w1 = output.w1 * stride;
+      input.w2 = output.w2 * stride + stride - 1;
+      input.h1 = output.h1 * stride;
+      input.h2 = output.h2 * stride + stride - 1;
    }
-   input.w = input.w2 -input.w1 + 1;
-   input.h = input.h2 -input.h1 + 1;
+   input.w = input.w2 - input.w1 + 1;
+   input.h = input.h2 - input.h1 + 1;
    return input;
 
 }
