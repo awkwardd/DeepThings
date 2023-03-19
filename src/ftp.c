@@ -84,10 +84,11 @@ ftp_parameters* preform_ftp(uint32_t N, uint32_t M, uint32_t fused_layers, netwo
    for(i = 0; i < ftp_para->partitions_h; i++){
       for(j = 0; j < ftp_para->partitions_w; j++){
          for(l = fused_layers-1; l >= 0; l--){
-            ftp_para->input_tiles[ftp_para->task_id[i][j]][l] = 
-                       traversal(net_para, ftp_para->output_tiles[ftp_para->task_id[i][j]][l], l);
-            if(l>0) ftp_para->output_tiles[ftp_para->task_id[i][j]][l-1] 
-                     = ftp_para->input_tiles[ftp_para->task_id[i][j]][l];
+            int32_t task = ftp_para->task_id[i][j];
+            ftp_para->input_tiles[task][l] =
+                       traversal(net_para, ftp_para->output_tiles[task][l], l);
+            if(l>0) ftp_para->output_tiles[task][l-1]
+                     = ftp_para->input_tiles[task][l];
          }
       }
    }
