@@ -159,8 +159,8 @@ void forward_until(cnn_model* model, uint32_t from, uint32_t to){
 
 tile_region relative_offsets(tile_region large, tile_region small){
     tile_region output; 
-    output.w1 = small.w1 - large.w1 ; 
-    output.w2 = small.w1 - large.w1 + (small.w2 - small.w1);
+    output.w1 = small.w1 - large.w1 ;  //offset
+    output.w2 = small.w1 - large.w1 + (small.w2 - small.w1);    //offset + small.w
     output.h1 = small.h1 - large.h1; 
     output.h2 = small.h1 - large.h1 + (small.h2 - small.h1);
     output.w = output.w2 - output.w1 + 1;
